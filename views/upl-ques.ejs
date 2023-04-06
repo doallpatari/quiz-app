@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+          rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        />
+        <link
+          rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+        <title>Social Auth</title>
+        <style>
+          body {
+            padding-top: 70px;
+          }
+        </style>
+      </head>
+<body>
+    <div class="container">
+        <div class="jumbotron text-center text-primary">
+          <h1><span class="fa fa-upload" aria-hidden="true"></span> UPLOAD</h1>
+        </div>
+        <div>
+          <!-- enctype="multipart/form-data" -->
+          <form method="post" action="/upload">
+            <label for="ques">Ques: </label>
+            <input type="text" id="ques" name="ques">
+            <br>
+            <br>
+            
+            <input type="radio" name="correctOption" value="1" checked="checked">
+            <label for="opt1">Option1: </label>
+            <input type="text" id="opt1" name="opt1"> 
+            <br>
+            <br>
+
+            <input type="radio" name="correctOption" value="2">
+            <label for="opt2">Option2:</label>
+            <input type="text" id="opt2" name="opt2"> 
+            <br>
+            <br>
+
+            <input type="radio" name="correctOption" value="3">
+            <label for="opt3">Option3:</label>
+            <input type="text" id="opt3" name="opt3"> 
+            <br>
+            <br>
+
+            <span><input type="radio" name="correctOption" value="4">
+            <label for="opt4">Option4:</label>
+            <input type="text" id="opt4" name="opt4"> 
+            </span> 
+            <br>
+            <br>
+            <label for="category">Category: </label>
+            <input type="text" name="category" id="category">
+            <br>
+            <br>
+            <div>
+            <label for="image">Upload Image</label>
+            <input type="file" id="image" name="image" value="" />
+            </div>  
+            
+          <input type="submit" value="Upload">
+
+          <br>
+          <br>
+          <br>
+          <br>
+
+          </form>
+        </div>
+      </div>
+    
+</body>
+</html>

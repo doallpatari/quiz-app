@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Social Auth</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <!-- load bootstrap css -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <!-- load fontawesome -->
+    <style>
+      body {
+        padding-top: 70px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        <h1 class="text-primary text-center">
+          <span class="fa fa-user">Questions</span> 
+        </h1>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="well">
+              <p>
+                <form method="post" action="/admin/approved">
+                <strong>Ques</strong>: <%= ques.question %><br />
+                <strong>Question ID</strong>: <%= ques.id %><br />
+                <input type="radio" name="answer" value="1" required><strong>Opt1</strong>: <%= ques.options[0].value %><br />
+                <input type="radio" name="answer" value="2" ><strong>Opt2</strong>: <%= ques.options[1].value %><br >
+                <input type="radio" name="answer" value="3" ><strong>Opt3</strong>: <%= ques.options[2].value %><br >
+                <input type="radio" name="answer" value="4" ><strong>Opt4</strong>: <%= ques.options[3].value %><br />
+                <input type="radio" name="approved" value="1" required>approved
+                <input type="radio" name="approved" value="2">delete
+                <label for="difficulty">Choose a difficulty:</label>
+                <select id="difficulty" name="difficulty">
+                  <option value="1" aria-required>Easy</option>
+                  <option value="2">Medium</option>
+                  <option value="3">Hard</option>
+                </select>
+                <input type="submit" value="done">
+                </form>
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

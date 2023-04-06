@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Social Auth</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <!-- load bootstrap css -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <!-- load fontawesome -->
+    <style>
+      body {
+        padding-top: 70px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        <h1 class="text-primary text-center">
+          <span class="fa fa-user">Questions</span> 
+        </h1>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="well">
+              <p>
+                <form method="post">
+                <strong>Ques</strong>: <%= ques.quest %><br />
+                <input type="radio" name="answer" value="1" required><strong>Opt1</strong>: <%= ques.opt1 %><br />
+                <input type="radio" name="answer" value="2" ><strong>Opt2</strong>: <%= ques.opt2 %><br />
+                <input type="radio" name="answer" value="3" ><strong>Opt3</strong>: <%= ques.opt3 %><br />
+                <input type="radio" name="answer" value="4" ><strong>Opt4</strong>: <%= ques.opt4 %><br />
+                <input type="submit" name="submiss" formaction="/quiz/next">next
+                </form>
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
