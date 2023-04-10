@@ -1,5 +1,5 @@
 const express = require("express")
-const Ques = require("../dal/models/ques")
+const Ques = require("../../dal/models/ques")
 const ensureLoggedIn = require("connect-ensure-login").ensureLoggedIn
 const router = express.Router()
 const fs = require('fs');

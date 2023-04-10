@@ -1,6 +1,6 @@
-const ques = require("../dal/models/ques")
+const ques = require("../../dal/models/ques")
 const router = require("express").Router()
-const activeQuiz = require("../dal/models/active.quiz")
+const activeQuiz = require("../../dal/models/active.quiz")
 
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -9,10 +9,14 @@ function shuffleArray(array) {
   }
 }
 router.post('/', async (req, res, next)=>{
-  if(activeQuiz.findOne({
+  if(activeQuiz.exists({user:req.user.email})){
+    activeQuiz.findOne({
     user: req.user.email
-  }).then((data)=>res.render('displayQuiz', {ques:data.ques[data.currQues]}))
-  )
+  }).then((data)=>{
+    res.render('displayQues', {ques:data.quiz[data.currQues]})
+  })
+}
+else{
   await ques.find()
   .then((data)=>{
     let arr = []
@@ -33,15 +37,7 @@ router.post('/', async (req, res, next)=>{
   })
   .catch(err=>console.log(err))
   next()
-})
-
-router.post('/next', (req, res)=>{
-  const curr = activeQuiz.findOne({email:req.user.email}).currQues
-  activeQuiz.findOneAndUpdate({
-    email:req.user.email
-  }, {
-    currQues:curr+1
-  }).then((data)=>res.render('displayQues', {ques:data.ques[data.currQues]}))
+}
 })
 
 module.exports = router

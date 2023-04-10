@@ -29,13 +29,15 @@
             <div class="well">
               <p>
                 <form method="post">
-                <strong>Ques</strong>: <%= ques.quest %><br />
-                <input type="radio" name="answer" value="1" required><strong>Opt1</strong>: <%= ques.opt1 %><br />
-                <input type="radio" name="answer" value="2" ><strong>Opt2</strong>: <%= ques.opt2 %><br />
-                <input type="radio" name="answer" value="3" ><strong>Opt3</strong>: <%= ques.opt3 %><br />
-                <input type="radio" name="answer" value="4" ><strong>Opt4</strong>: <%= ques.opt4 %><br />
-                <input type="submit" name="submiss" formaction="/quiz/next">next
-                </form>
+                <strong>Ques</strong>: <%= ques.question %><br />
+                <input type="radio" name="answer" value="1"    ><strong>Opt1</strong>: <%= ques.options[0].value %><br />
+                <input type="radio" name="answer" value="2" ><strong>Opt2</strong>: <%= ques.options[1].value %><br />
+                <input type="radio" name="answer" value="3" ><strong>Opt3</strong>: <%= ques.options[2].value %><br />
+                <input type="radio" name="answer" value="4" ><strong>Opt4</strong>: <%= ques.options[3].value %><br />
+                <button type="submit" name="submit" formaction="/quiz/next" value="next" class="btn btn-primary"> next </button>
+                <button type="submit" name="submit" formaction="/quiz/prev" value="prev" class="btn btn-secondary">prev </button> 
+                <button type="submit" name="submit" formaction="/quiz/submit" value="prev" class="btn btn-danger">submit </button> 
+                </form> 
               </p>
             </div>
 

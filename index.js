@@ -6,17 +6,18 @@ const facebookRouter = require('./src/controllers/auth/facebook-auth');
 const githubRouter = require('./src/controllers/auth/github-auth');
 const localRouter = require('./src/controllers/auth/local-auth');
 const admin = require("./src/controllers/admin")
-const upload = require('./src/controllers/uploadQues')
-const giveQuiz = require("./src/controllers/giveQuiz")
+const upload = require('./src/controllers/quizControllers/uploadQues')
+const giveQuiz = require("./src/controllers/quizControllers/giveQuiz")
 const passport = require('passport');
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
 const cookieParser = require("cookie-parser")
 const { ensureLoggedIn } = require('connect-ensure-login');
 
-require('dotenv').config();
-
 app.set('view engine', 'ejs');
+require('dotenv').config();
+app.use(cookieParser());
+
 app.use(
   bodyParser.urlencoded({
     extended: false
@@ -33,7 +34,6 @@ const connectToMongoDb = () => {
     });
 };
 connectToMongoDb();
-app.use(cookieParser());
 app.use(
   session({
     resave: false,

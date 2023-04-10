@@ -1,8 +1,11 @@
 const router = require("express").Router()
-const getRand = require("../controllers/produceRandom")
-const score = require("../dal/models/scores.users")
-const ques = require("../dal/models/ques")
+const getRand = require("./produceRandom")
+const score = require("../../dal/models/scores.users")
+const ques = require("../../dal/models/ques")
 const  ensureLoggedIn  = require("connect-ensure-login").ensureLoggedIn
+const next = require("./nextQues")
+const prev = require("./prevQues")
+const submit = require("./submit")
 
 
 router.get('/', ensureLoggedIn('/login'), (req, res, next)=>{
@@ -42,7 +45,9 @@ router.post('/', (req, res, next)=>{
     next()
 },getRand)
 
-router.use('/next', getRand)
+router.use('/next', next)
+router.use('/prev', prev)
+router.use('submit', submit)
 
 
 
