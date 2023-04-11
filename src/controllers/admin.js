@@ -19,21 +19,33 @@ router.get('/', (req, res)=>{
     res.send("admin panel")
 })
 router.get('/unapproved', (req, res)=>{
-  ques.findOne({})
+  ques.findOne({approved:false})
   .then((data, err)=>{
     if(err){
       console.log(err)
     }
     if(data){
-      sentObjsId.push(data)
+      sentObjsId.push(data.id)
     res.render('checkUnapp', {ques: data})
   }
     else{
       res.status(200).send("U R all caught up")
     }
   })
-router.post('/approved', (req, res)=>{
-  res.json(sentObjsId[0])
+router.post('/approved', async (req, res)=>{
+  if(req.body.approved=="1"){
+    data = await ques.findById(sentObjsId[0])
+    data.approved = true
+    data.save() 
+    sentObjsId.shift()
+    res.send("approved")   
+  }
+  else{
+    data = await ques.findById(sentObjsId[0])
+    data.delete()
+    sentObjsId.shift()
+    res.send("deleted")
+  }
 })
 })
 

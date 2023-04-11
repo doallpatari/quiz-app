@@ -31,10 +31,10 @@
                 <form method="post" action="/admin/approved">
                 <strong>Ques</strong>: <%= ques.question %><br />
                 <strong>Question ID</strong>: <%= ques.id %><br />
-                <input type="radio" name="answer" value="1" required><strong>Opt1</strong>: <%= ques.options[0].value %><br />
-                <input type="radio" name="answer" value="2" ><strong>Opt2</strong>: <%= ques.options[1].value %><br >
-                <input type="radio" name="answer" value="3" ><strong>Opt3</strong>: <%= ques.options[2].value %><br >
-                <input type="radio" name="answer" value="4" ><strong>Opt4</strong>: <%= ques.options[3].value %><br />
+                <input type="radio" name="answer" value="1" <%= ques.options[0].isCorrect==true ? 'checked' : '' %>><strong>Opt1</strong>: <%= ques.options[0].value %><br />
+                <input type="radio" name="answer" value="2" <%= ques.options[1].isCorrect==true ? 'checked' : '' %>><strong>Opt2</strong>: <%= ques.options[1].value %><br >
+                <input type="radio" name="answer" value="3" <%= ques.options[2].isCorrect==true ? 'checked' : '' %>><strong>Opt3</strong>: <%= ques.options[2].value %><br >
+                <input type="radio" name="answer" value="4" <%= ques.options[3].isCorrect==true ? 'checked' : '' %>><strong>Opt4</strong>: <%= ques.options[3].value %><br />
                 <input type="radio" name="approved" value="1" required>approved
                 <input type="radio" name="approved" value="2">delete
                 <label for="difficulty">Choose a difficulty:</label>
