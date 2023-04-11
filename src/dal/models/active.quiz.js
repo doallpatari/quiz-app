@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-const optionSchema = mongoose.Schema({
+const optionSchema = new mongoose.Schema({
     value: {
       type: String
     },
@@ -16,7 +16,7 @@ const optionSchema = mongoose.Schema({
     }
 });
   
-  const quesSchema = mongoose.Schema({
+  const quesSchema = new mongoose.Schema({
     question: {
       type: String,
       required: 'true'
@@ -33,15 +33,18 @@ const optionSchema = mongoose.Schema({
     difficulty:{
       type: Number,
       default : 2
+    },
+    chosenOption:{
+      type:Number,
+      default:-1
     }
   })
 
-  const quiz = mongoose.Schema({
+  const quiz = new mongoose.Schema({
     user: {
         type: String,
         required: true
     },
-
     quiz: [quesSchema],
     currQues: {
         type:Number,
@@ -57,5 +60,5 @@ const optionSchema = mongoose.Schema({
   }
   )
 
-const ques = mongoose.model('activeQuiz', quiz)
-module.exports = ques;
+const activeQuiz = mongoose.model('activeQuiz', quiz)
+module.exports = activeQuiz;

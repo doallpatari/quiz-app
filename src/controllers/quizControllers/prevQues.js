@@ -15,6 +15,10 @@ router.all('/', ensureLoggedIn('/login'), async (req, res)=>{
         if( await activeQuiz.exists({user:email})){
             curr = await activeQuiz.findOne({user:email})
             currQ = await curr.currQues
+            if(req.body.answer){    
+                curr.quiz[currQ].chosenOption = req.body.answer
+                curr.save()
+            }
             if(currQ>0){
                 currQ--
                 doc = await activeQuiz.findOneAndUpdate({user:email}, {currQues:currQ}, {new: true})

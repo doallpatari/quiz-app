@@ -9,9 +9,9 @@ function shuffleArray(array) {
   }
 }
 router.post('/', async (req, res, next)=>{
-  if(activeQuiz.exists({user:req.user.email})){
+  if(await activeQuiz.exists({user:req.user.email})){
     activeQuiz.findOne({
-    user: req.user.email
+    user: await req.user.email
   }).then((data)=>{
     res.render('displayQues', {ques:data.quiz[data.currQues]})
   })

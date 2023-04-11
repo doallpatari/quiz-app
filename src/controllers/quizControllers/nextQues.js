@@ -11,10 +11,15 @@ router.all('/', ensureLoggedIn('/login'), async (req, res)=>{
     catch(err){
         console.log(err)
     }
-    
+
         if( await activeQuiz.exists({user:email})){
+
             curr = await activeQuiz.findOne({user:email})
             currQ = await curr.currQues
+            if(req.body.answer){    
+                curr.quiz[currQ].chosenOption = req.body.answer
+                curr.save()
+            }
             max = await curr.quiz.length
             if(currQ < max-1){
                 currQ++
