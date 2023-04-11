@@ -13,13 +13,18 @@ router.all('/', ensureLoggedIn('/login'), async (req, res)=>{
     }
     
         if( await activeQuiz.exists({user:email})){
-            console.log(email)
             curr = await activeQuiz.findOne({user:email})
-            console.log(typeof(curr))
-            curr = await curr.currQues
-            console.log(curr)
-            doc = await activeQuiz.findOneAndUpdate({user:email}, {currQues:++curr}, {new: true})
-            res.render('displayQues', {ques: doc.quiz[doc.currQues]})
+            currQ = await curr.currQues
+            max = await curr.quiz.length
+            if(currQ < max-1){
+                currQ++
+                doc = await activeQuiz.findOneAndUpdate({user:email}, {currQues:currQ}, {new: true})
+                res.render('displayQues', {ques: doc.quiz[doc.currQues]})
+            }
+            else{
+                res.send("final page")
+            }
+
         }
     
     else{
@@ -27,14 +32,5 @@ router.all('/', ensureLoggedIn('/login'), async (req, res)=>{
     }
     // res.send("adfads")
 })
-
-
-
-
-
-
-
-
-
 
 module.exports = router
