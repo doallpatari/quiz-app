@@ -1,11 +1,12 @@
 const mongoose = require("mongoose")
-const optionSchema = mongoose.Schema({
+const optionSchema = new mongoose.Schema({
     value: {
       type: String
     },
     isCorrect: {
       type: 'boolean',
-      select: false
+      default: false,
+      required: true
     }
   })
   const imageSchema = new mongoose.Schema({

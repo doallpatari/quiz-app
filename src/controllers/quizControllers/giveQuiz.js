@@ -47,7 +47,7 @@ router.post('/', (req, res, next)=>{
 
 router.use('/next', next)
 router.use('/prev', prev)
-router.use('submit', submit)
+router.use('/submit', submit)
 
 
 

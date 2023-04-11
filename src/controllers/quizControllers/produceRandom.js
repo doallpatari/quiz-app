@@ -1,5 +1,5 @@
-const ques = require("../../dal/models/ques")
 const router = require("express").Router()
+const ques = require("../../dal/models/ques")
 const activeQuiz = require("../../dal/models/active.quiz")
 
 function shuffleArray(array) {
@@ -17,15 +17,17 @@ router.post('/', async (req, res, next)=>{
   })
 }
 else{
-  await ques.find()
+  await ques.find({})
   .then((data)=>{
     let arr = []
     for(let i=0;i<data.length;i++){
       arr.push(i)
     }
+    console.log(data[0].options[0])
     shuffleArray(arr)
     question = []
     for(let i=0;i<req.body.noQues;i++){
+      console.log(data[arr[i]])
       question.push(data[arr[i]])
     }
     const quiz = new activeQuiz({

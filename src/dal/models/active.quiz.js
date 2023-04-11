@@ -5,7 +5,8 @@ const optionSchema = new mongoose.Schema({
     },
     isCorrect: {
       type: 'boolean',
-      select: false
+      default: false,
+      required: true
     }
   })
   const imageSchema = new mongoose.Schema({

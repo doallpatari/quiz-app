@@ -1,11 +1,13 @@
 const mongoose = require("mongoose")
-const optionSchema = mongoose.Schema({
+const optionSchema = new mongoose.Schema({
     value: {
-      type: String
+      type: String,
+      required: true
     },
     isCorrect: {
       type: 'boolean',
-      select: false
+      default: false,
+      required: true
     }
   })
   const imageSchema = new mongoose.Schema({
@@ -16,7 +18,7 @@ const optionSchema = mongoose.Schema({
     }
 });
   
-  const quesSchema = mongoose.Schema({
+  const quesSchema = new mongoose.Schema({
     question: {
       type: String,
       required: true
