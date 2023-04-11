@@ -20,6 +20,9 @@ router.get('/', ensureLoggedIn('/login'), (req, res, next)=>{
             const newUser = new score({
                 email : req.user.email,
                 name : req.user.name,
+                category: [{totalAttempted:0, totalCorrect:0},
+                    {totalAttempted:0, totalCorrect:0},
+                    {totalAttempted:0, totalCorrect:0}]
 
             })
             newUser.save()

@@ -24,9 +24,9 @@ router.all('/*', ensureLoggedIn('/login'), (req, res, next)=>{
 // const upload = multer({ storage: storage });
 // upload.single('image'),
 router.post("/", (req, res)=>{
-    if(req.file){
-        console.log(req.file)
-    }
+    // if(req.file){
+    //     console.log(req.file)
+    // }
     // console.log(fs.readFileSync(path.join(__dirname + '../../../uploads/' + req.file.filename)))
     // const obj = {
     //     img:{
@@ -37,7 +37,7 @@ router.post("/", (req, res)=>{
     // console.log(obj)
     const newQues = new Ques({
         question: req.body.ques,
-        category:req.body.category,
+        category:parseInt(req.body.category),
         options:[
             {
                 value:String(req.body.opt1),
@@ -58,11 +58,11 @@ router.post("/", (req, res)=>{
             
         ],
         // image:[obj],
-        // approved:req.user.isAdmin ===true?true:false
+        approved:req.user.isAdmin ===true?true:false
     })
     // console.log(newQues.image)
     newQues.save()
-        .then(newQues => res.json(newQues))
+        .then(res.send("done"))
         .catch(err => console.log(err));
     // res.send("yello")    
 })

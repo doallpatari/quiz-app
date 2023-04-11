@@ -23,11 +23,9 @@ else{
     for(let i=0;i<data.length;i++){
       arr.push(i)
     }
-    console.log(data[0].options[0])
     shuffleArray(arr)
     question = []
     for(let i=0;i<req.body.noQues;i++){
-      console.log(data[arr[i]])
       question.push(data[arr[i]])
     }
     const quiz = new activeQuiz({

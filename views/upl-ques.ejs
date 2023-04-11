@@ -56,14 +56,16 @@
             </span> 
             <br>
             <br>
-            <label for="category">Category: </label>
-            <input type="text" name="category" id="category">
-            <br>
-            <br>
-            <div>
+            <label for="category">Category:</label>
+            <select id="category" name="category" required>
+              <option value="0">Physics</option>
+              <option value="1">Chemistry</option>
+              <option value="2">Maths</option>
+            </select>
+            <!-- <div>
             <label for="image">Upload Image</label>
             <input type="file" id="image" name="image" value="" />
-            </div>  
+            </div>   -->
             
           <input type="submit" value="Upload">
 

@@ -24,11 +24,14 @@ const optionSchema = new mongoose.Schema({
       required: true
     },
     category:{
-        type:String
+        type:Number
     },
     options: [optionSchema],
     image:[imageSchema],
-    
+    approved:{
+      type: Boolean,
+      default: false
+    }
   },
   {
     timestamps: true

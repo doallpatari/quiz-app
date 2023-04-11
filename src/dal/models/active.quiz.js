@@ -23,7 +23,7 @@ const optionSchema = new mongoose.Schema({
       required: 'true'
     },
     category:{
-        type:String
+        type:Number
     },
     options: [optionSchema],
     image:[imageSchema],
@@ -54,7 +54,25 @@ const optionSchema = new mongoose.Schema({
     time:{
         type: Number,
         default: 30
-    }
+    },
+    totalAttempted:{
+      type:Number,
+      default:0
+    },
+    totalCorrect:{
+      type:Number,
+      default:0
+    },
+    category:[{
+      totalAttempted:{
+        type:Number,
+        default: 0
+      },
+      totalCorrect:{
+        type:Number,
+        default:0
+      }
+    }]
   },
   {
     timestamps: true
