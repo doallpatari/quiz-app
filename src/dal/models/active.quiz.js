@@ -72,11 +72,14 @@ const optionSchema = new mongoose.Schema({
         type:Number,
         default:0
       }
-    }]
+    }],
+    expiresAt:{
+      type:Date,
+      expires: '30s',
+      default: Date.now
+    }
   },
-  {
-    timestamps: true
-  }
+  {timestamps:true}
   )
 
 const activeQuiz = mongoose.model('activeQuiz', quiz)

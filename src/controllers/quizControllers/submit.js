@@ -59,6 +59,7 @@ catch(err){
             }
             data.save()
             active.delete()
+            res.redirect('/')
         }
     else{
 

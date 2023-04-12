@@ -26,8 +26,17 @@
         <p>log in with:</p>
         
         <form method="post" action="/quiz">
-            <div>Number of Questions <input type="number" name="noQues" id="noQues" min="1" max="<%= max %>"></div>
+            <div>Number of Questions <input type="number" name="noQues" id="noQues" min="1" max="<%= max %>" required></div>
             <br>
+            <br>
+            <div>Time Needed<input type="number" name="time" id="time" min="1" max="60" required></div>
+            <br>
+            <br>
+            <div>
+              <input type="checkbox" name="maths" id="maths" value=2 checked> Maths
+              <input type="checkbox" name="physics" id="physics" value=0> Physics
+              <input type="checkbox" name="chemistry" id="chemistry" value=1> Chemistry
+            </div>
             <input type="submit" class="btn btn-danger">
           </form>
   
