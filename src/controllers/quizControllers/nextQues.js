@@ -22,13 +22,10 @@ router.all('/', ensureLoggedIn('/login'), async (req, res)=>{
             }
             max = await curr.quiz.length
             if(currQ < max-1){
-                currQ++
-                doc = await activeQuiz.findOneAndUpdate({user:email}, {currQues:currQ}, {new: true})
-                res.render('displayQues', {ques: doc.quiz[doc.currQues]})
+                currQ++;
             }
-            else{
-                res.send("final page")
-            }
+            doc = await activeQuiz.findOneAndUpdate({user:email}, {currQues:currQ}, {new: true})
+            res.render('displayQues', {ques: doc.quiz[doc.currQues]})
 
         }
     

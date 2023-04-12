@@ -21,12 +21,9 @@ router.all('/', ensureLoggedIn('/login'), async (req, res)=>{
             }
             if(currQ>0){
                 currQ--
-                doc = await activeQuiz.findOneAndUpdate({user:email}, {currQues:currQ}, {new: true})
-                res.render('displayQues', {ques: doc.quiz[doc.currQues]})
             }
-            else{
-                res.send("0th question")
-            }
+            doc = await activeQuiz.findOneAndUpdate({user:email}, {currQues:currQ}, {new: true})
+            res.render('displayQues', {ques: doc.quiz[doc.currQues]})
         }
     
     else{
