@@ -14,18 +14,26 @@ catch(err){
 
     const active = await activeQuiz.findOne({user:email})
     if(req.body.answer){
-        active.quiz[quiz.currQues].chosenOption = req.body.answer
+        active.quiz[active.quiz.currQues].chosenOption = req.body.answer
     }
 
     var totalAttempted=0, totalCorrect=0
     var categoryAttempted=Array(3).fill(0), categoryCorrect=Array(3).fill(0)
-    const questions = active.quiz
+    const questions = await active.quiz
     for(let i=0;i<questions.length;i++){
         quest = questions[i]
+        var isCorrect
+        if(quest.chosenOption!=-1){
+            isCorrect = await quest.options[quest.chosenOption].isCorrect
+        }
+        else{
+            isCorrect=false
+        }
+
         totalAttempted = quest.chosenOption==-1?totalAttempted:++totalAttempted
-        totalCorrect = quest.options[quest.chosenOption-1].isCorrect==true?++totalCorrect:totalCorrect
+        totalCorrect = isCorrect==true?++totalCorrect:totalCorrect
         categoryAttempted[quest.category]++
-        categoryCorrect[quest.category]=quest.options[quest.chosenOption-1].isCorrect==true?++categoryCorrect[quest.category]:categoryCorrect[quest.category]
+        categoryCorrect[quest.category]=isCorrect==true?++categoryCorrect[quest.category]:categoryCorrect[quest.category]
 
     }
     let category = []
@@ -42,7 +50,6 @@ catch(err){
     active.save()
     if(await scores.exists({email:email})){
         data = await scores.findOne({email:email})
-            console.log(data.email)
             data.totalQuizes.push(active)
             data.totalAttempted += totalAttempted
             data.totalCorrect +=totalCorrect

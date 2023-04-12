@@ -33,6 +33,7 @@ const connectToMongoDb = () => {
       throw error;
     });
 };
+mongoose.set("strictQuery", true)
 connectToMongoDb();
 app.use(
   session({
